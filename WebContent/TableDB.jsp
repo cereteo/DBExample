@@ -1,6 +1,6 @@
-<%@page import="it.objectmethod.JDBCTutorial.JDBC.CityDBClass"%>
+<%@page import="it.objectmethod.jdbc.model.City"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="it.objectmethod.JDBCTutorial.JDBC.DBExampleServlet"%>
+<%@page import="it.objectmethod.jdbc.servlets.DBExampleServlet"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -21,16 +21,16 @@
 			</thead>
 			<tbody>
 			<%
-				ArrayList<CityDBClass> data = DBExampleServlet.DataFromDB();
-			
-				for(int i=0; i<data.size(); i++){
-					out.print(String.format("<tr>"+
-						"<td>"+data.get(i).getName()+"</td>"+
-						"<td>"+data.get(i).getDistrict()+"</td>"+
-						"<td>"+data.get(i).getPopulation()+"</td>"+
-						"</tr>"
-					));
-				}
+				ArrayList<City> data = DBExampleServlet.dataFromDB();
+				
+					for(int i=0; i<data.size(); i++){
+						out.print(String.format("<tr>"+
+							"<td>"+data.get(i).getName()+"</td>"+
+							"<td>"+data.get(i).getDistrict()+"</td>"+
+							"<td>"+data.get(i).getPopulation()+"</td>"+
+							"</tr>"
+						));
+					}
 			%>
 			</tbody>
 		</table>
