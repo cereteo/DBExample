@@ -19,7 +19,7 @@ public class DBExampleServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";  
-	static final String DB_URL = "jdbc:mysql://localhost/World";
+	static final String DB_URL = "jdbc:mysql://localhost/world";
 
 	static final String USER = "root";
 	static final String PASS = "root";
@@ -78,7 +78,7 @@ public class DBExampleServlet extends HttpServlet{
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setAttribute("data", dataFromDB());
+		request.setAttribute("cities", dataFromDB());
 		request.getRequestDispatcher("TableDB.jsp").forward(request, response);
 	}
 

@@ -1,6 +1,4 @@
-<%@page import="it.objectmethod.jdbc.model.City"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="it.objectmethod.jdbc.servlets.DBExampleServlet"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -20,20 +18,13 @@
 				</tr>
 			</thead>
 			<tbody>
-			<%
-				ArrayList<City> data = DBExampleServlet.dataFromDB();
-				
-					for(int i=0; i<data.size(); i++){
-						out.print(String.format("<tr>"+
-							"<td>"+data.get(i).getName()+"</td>"+
-							"<td>"+data.get(i).getDistrict()+"</td>"+
-							"<td>"+data.get(i).getPopulation()+"</td>"+
-							"</tr>"
-						));
-					}
-			%>
+
 			</tbody>
 		</table>
 	</div>
+	
+	<c:forEach items="${cities}" var="c">
+		<p>${c.name} - ${c.district} + ${c.population}</p>
+	</c:forEach>
 </body>
 </html>
