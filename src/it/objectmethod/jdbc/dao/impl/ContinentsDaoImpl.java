@@ -9,26 +9,28 @@ import java.util.List;
 
 import it.objectmethod.jdbc.config.ConnectionFactory;
 import it.objectmethod.jdbc.dao.ICityDao;
-import it.objectmethod.jdbc.model.City;
+import it.objectmethod.jdbc.dao.IContinentsDao;
+import it.objectmethod.jdbc.model.Continents;
 
-public class CityDaoImpl implements ICityDao{
+public class ContinentsDaoImpl implements IContinentsDao{
 
 	@Override
-	public List<City> getAllCities() {
+	public List<Continents> getAllContinents() {
 		Connection conn = ConnectionFactory.getConnection();
 		Statement stmt = null;
-		List<City> ret = new ArrayList<City>();
+		List<Continents> ret = new ArrayList<Continents>();
 		try{
 			stmt = conn.createStatement();
-			String sql = "SELECT Name, District, Population FROM World.city";
+			String sql = "SELECT Continent, sum(SurfaceArea) totSurfaceArea, sum(Population) totPopulation FROM world.country\n" + 
+					"GROUP BY Continent;";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
 
-				City c = new City();
-				c.setName(rs.getString("Name"));
-				c.setDistrict(rs.getString("District"));
-				c.setPopulation(rs.getInt("Population"));
+				Continents c = new Continents();
+				c.setContinent(rs.getString("continent"));
+				c.setTotSurfaceArea(Double.parseDouble(rs.getString("totSurfaceArea")));
+				c.setTotPopulation(Long.parseLong(rs.getString("totPopulation")));
 				ret.add(c);
 				
 			}

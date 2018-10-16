@@ -22,9 +22,8 @@
 			</tbody>
 		</table>
 	</div>
-	
-	<c:forEach items="${cities}" var="c">
-		<p>${c.name} - ${c.district} + ${c.population}</p>
+	<c:forEach items="${continents}" var="c">
+		<p>${c.continent} - ${c.totSurfaceArea} + ${c.totPopulation}</p>
 	</c:forEach>
 </body>
 </html>
