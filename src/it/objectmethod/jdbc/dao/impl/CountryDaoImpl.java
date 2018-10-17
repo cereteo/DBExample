@@ -3,9 +3,9 @@ package it.objectmethod.jdbc.dao.impl;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.sql.PreparedStatement;
 
 import it.objectmethod.jdbc.config.ConnectionFactory;
 import it.objectmethod.jdbc.dao.ICountryDao;
@@ -16,13 +16,15 @@ public class CountryDaoImpl implements ICountryDao{
 	@Override
 	public List<Country> getAllCountry(String continent) {
 		Connection conn = ConnectionFactory.getConnection();
-		Statement stmt = null;
+		PreparedStatement stmt = null;
 		List<Country> ret = new ArrayList<Country>();
 		try{
-			stmt = conn.createStatement();
-			String sql = "SELECT Name, SurfaceArea, Population, Code FROM world.country where Continent = '"+continent+"'";
-			ResultSet rs = stmt.executeQuery(sql);
+			String sql = "SELECT Name, SurfaceArea, Population, Code FROM world.country where Continent = ?";
+			stmt = conn.prepareStatement(sql);		
+			stmt.setString(1, continent);
 			
+			ResultSet rs = stmt.executeQuery();
+
 			while(rs.next()){
 
 				Country c = new Country();

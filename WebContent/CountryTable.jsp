@@ -22,7 +22,7 @@
 					<c:forEach items="${country}" var="c">
 						<tr>
 								<td>
-								<form action="DBExampleServlet">
+								<form action="CitiesServlet">
 									<input type="hidden" name="selectedCountry" value="${c.countryCode}">
 									<input type="submit" value="${c.name}">
 								</form>		

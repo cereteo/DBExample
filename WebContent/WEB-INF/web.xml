@@ -10,11 +10,27 @@
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
   <servlet>
-        <servlet-name>DBExample</servlet-name>
-        <servlet-class>it.objectmethod.jdbc.servlets.DBExampleServlet</servlet-class>
+        <servlet-name>ContinentServlet</servlet-name>
+        <servlet-class>it.objectmethod.jdbc.servlets.ContinentsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CountryServlet</servlet-name>
+        <servlet-class>it.objectmethod.jdbc.servlets.CountryServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CitiesServlet</servlet-name>
+        <servlet-class>it.objectmethod.jdbc.servlets.CitiesServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>DBExample</servlet-name>
-        <url-pattern>/DBExampleServlet</url-pattern>
+        <servlet-name>ContinentServlet</servlet-name>
+        <url-pattern>/ContinentServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CountryServlet</servlet-name>
+        <url-pattern>/CountryServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CitiesServlet</servlet-name>
+        <url-pattern>/CitiesServlet</url-pattern>
     </servlet-mapping>
 </web-app>
