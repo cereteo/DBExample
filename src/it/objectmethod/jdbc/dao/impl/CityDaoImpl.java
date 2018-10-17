@@ -14,21 +14,23 @@ import it.objectmethod.jdbc.model.City;
 public class CityDaoImpl implements ICityDao{
 
 	@Override
-	public List<City> getAllCities() {
+	public List<City> getAllCities(String country) {
 		Connection conn = ConnectionFactory.getConnection();
 		Statement stmt = null;
 		List<City> ret = new ArrayList<City>();
 		try{
 			stmt = conn.createStatement();
-			String sql = "SELECT Name, District, Population FROM World.city";
+			String sql = "SELECT  c.Name, c.Population, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital\n" + 
+					"FROM  world.city c left join world.country cc  on c.ID = cc.Capital\n" + 
+					"where c.CountryCode = '"+country+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
 
 				City c = new City();
 				c.setName(rs.getString("Name"));
-				c.setDistrict(rs.getString("District"));
 				c.setPopulation(rs.getInt("Population"));
+				c.setCapital(rs.getBoolean("isCapital"));
 				ret.add(c);
 				
 			}

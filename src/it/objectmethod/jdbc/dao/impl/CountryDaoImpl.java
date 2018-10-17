@@ -8,23 +8,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import it.objectmethod.jdbc.config.ConnectionFactory;
-import it.objectmethod.jdbc.dao.ICityDao;
-import it.objectmethod.jdbc.dao.IContinentsDao;
 import it.objectmethod.jdbc.dao.ICountryDao;
-import it.objectmethod.jdbc.model.Continents;
 import it.objectmethod.jdbc.model.Country;
 
 public class CountryDaoImpl implements ICountryDao{
 
 	@Override
-	public List<Country> getAllCountry() {
+	public List<Country> getAllCountry(String continent) {
 		Connection conn = ConnectionFactory.getConnection();
 		Statement stmt = null;
 		List<Country> ret = new ArrayList<Country>();
 		try{
 			stmt = conn.createStatement();
-			String sql = "SELECT Continent, sum(SurfaceArea) totSurfaceArea, sum(Population) totPopulation FROM world.country\n" + 
-					"GROUP BY Continent;";
+			String sql = "SELECT Name, SurfaceArea, Population, Code FROM world.country where Continent = '"+continent+"'";
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
@@ -32,7 +28,8 @@ public class CountryDaoImpl implements ICountryDao{
 				Country c = new Country();
 				c.setName(rs.getString("Name"));
 				c.setSurfaceArea(Double.parseDouble(rs.getString("SurfaceArea")));
-				c.setPopulation(Integer.parseInt(rs.getString("totPopulation")));
+				c.setPopulation(Integer.parseInt(rs.getString("Population")));
+				c.setCountryCode(rs.getString("Code"));
 				ret.add(c);
 				
 			}
@@ -65,5 +62,6 @@ public class CountryDaoImpl implements ICountryDao{
 
 		return ret;
 	}
+
 
 }

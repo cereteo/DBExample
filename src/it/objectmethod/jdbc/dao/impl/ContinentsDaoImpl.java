@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,7 @@ public class ContinentsDaoImpl implements IContinentsDao{
 
 				Continents c = new Continents();
 				c.setContinent(rs.getString("continent"));
+				
 				c.setTotSurfaceArea(Double.parseDouble(rs.getString("totSurfaceArea")));
 				c.setTotPopulation(Long.parseLong(rs.getString("totPopulation")));
 				ret.add(c);

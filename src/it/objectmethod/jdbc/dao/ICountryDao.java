@@ -5,5 +5,5 @@ import it.objectmethod.jdbc.model.Country;
 
 public interface ICountryDao {
 
-	public List<Country> getAllCountry();
+	public List<Country> getAllCountry(String continent);
 }

@@ -5,6 +5,8 @@ public class Country {
 	private String name;
 	private double surfaceArea;
 	private int population;
+	private String countryCode;
+	
 	public String getName() {
 		return name;
 	}
@@ -23,6 +25,10 @@ public class Country {
 	public void setPopulation(int population) {
 		this.population = population;
 	}
-	
-	
+	public String getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
+	}
 }

@@ -4,26 +4,35 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="style.css">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
-	<div>
-		<table>
+	<div class="wrapper">
+		<table class="table">
 			<thead>
 				<tr>
 					<th>Nome</th>
-					<th>Città</th>
-					<th>Popolazione</th>
+					<th>Superficie Totale</th>
+					<th>Popolazione Totale</th>
 				</tr>
 			</thead>
 			<tbody>
-
+					<c:forEach items="${continents}" var="c">
+						<tr>
+								<td>
+								<form action="DBExampleServlet">
+									<input type="submit" name="selectedContinent" value="${c.continent}">
+								</form>		
+								
+								</td>					
+							<td>${c.totSurfaceArea}</td>
+							<td>${c.totPopulation}</td>
+						</tr>
+					</c:forEach>
 			</tbody>
 		</table>
 	</div>
-	<c:forEach items="${continents}" var="c">
-		<p>${c.continent} - ${c.totSurfaceArea} + ${c.totPopulation}</p>
-	</c:forEach>
 </body>
 </html>

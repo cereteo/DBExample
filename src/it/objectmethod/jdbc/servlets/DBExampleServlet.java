@@ -22,20 +22,27 @@ public class DBExampleServlet extends HttpServlet{
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ICityDao cityDao = new CityDaoImpl();
-		List<City> cities = cityDao.getAllCities();
-		
 		IContinentsDao continentsDao = new ContinentsDaoImpl();
 		List<Continents> continents = continentsDao.getAllContinents();
 		
+		String continent = request.getParameter("selectedContinent");
 		ICountryDao countryDao = new CountryDaoImpl();
-		List<Country> country = countryDao.getAllCountry();
+		List<Country> country = (continent == null)? null : countryDao.getAllCountry(continent);
 		
-		request.setAttribute("cities", cities);
+		String nation = request.getParameter("selectedCountry");
+		ICityDao cityDao = new CityDaoImpl();
+		List<City> cities = (nation == null)? null :cityDao.getAllCities(nation);
+		
 		request.setAttribute("continents", continents);
 		request.setAttribute("country", country);
-		
-		request.getRequestDispatcher("TableDB.jsp").forward(request, response);
+		request.setAttribute("cities", cities);
+		if(nation != null) {
+			request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
+		} else if (country != null) {
+			request.getRequestDispatcher("CountryTable.jsp").forward(request, response);
+		}else {
+			request.getRequestDispatcher("TableDB.jsp").forward(request, response);
+		}		
 	}
 
 } 

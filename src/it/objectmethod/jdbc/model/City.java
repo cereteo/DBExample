@@ -3,21 +3,14 @@ package it.objectmethod.jdbc.model;
 public class City {
 	
 	private String name;
-	private String district;
 	private int population;
-	private boolean isCapital;
+	private boolean capital;
 	
 	public String getName() {
 		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
-	}
-	public String getDistrict() {
-		return district;
-	}
-	public void setDistrict(String district) {
-		this.district = district;
 	}
 	public int getPopulation() {
 		return population;
@@ -26,10 +19,10 @@ public class City {
 		this.population = population;
 	}
 	public boolean isCapital() {
-		return isCapital;
+		return capital;
 	}
 	public void setCapital(boolean isCapital) {
-		this.isCapital = isCapital;
+		this.capital = isCapital;
 	}
 	
 }
