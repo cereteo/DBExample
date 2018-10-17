@@ -20,12 +20,17 @@ import it.objectmethod.jdbc.model.Country;
 
 public class CountryServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-			
+		
 		String continent = request.getParameter("selectedContinent");
+	//	boolean back = Boolean.parseBoolean(request.getParameter("countryback"));
+		
 		ICountryDao countryDao = new CountryDaoImpl();
 		List<Country> country = (continent == null)? null : countryDao.getAllCountry(continent);
-
+		
+		//System.out.println(back);
 		request.setAttribute("country", country);
-		request.getRequestDispatcher("CountryTable.jsp").forward(request, response);
+		request.getRequestDispatcher(/*(back)?"ContinentServlet":*/"CountryTable.jsp").forward(request, response);
+		
+
 	}
 }

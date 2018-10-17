@@ -12,19 +12,16 @@ import it.objectmethod.jdbc.dao.ICityDao;
 import it.objectmethod.jdbc.model.City;
 
 public class CityDaoImpl implements ICityDao{
-
-	@Override
-	public List<City> getAllCities(String country) {
+	
+	private List<City> DoQuery(String sql, String clause){
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
 		List<City> ret = new ArrayList<City>();
 		try{
-			String sql = "SELECT  c.Name, c.Population, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital\n" + 
-					"FROM  world.city c left join world.country cc  on c.ID = cc.Capital\n" + 
-					"where c.CountryCode=?";
 			 stmt = conn.prepareStatement(sql);
 			
-			 stmt.setString(1, country);
+			 stmt.setString(1, clause);
+			 System.out.println(sql+"  "+clause);
 			ResultSet rs = stmt.executeQuery();
 			
 			while(rs.next()){
@@ -64,6 +61,24 @@ public class CityDaoImpl implements ICityDao{
 		}
 
 		return ret;
+	}
+
+	@Override
+	public List<City> getAllCities(String country) {
+		String sql = "SELECT  c.Name, c.District, c.Population, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital\n" + 
+				"FROM  world.city c left join world.country cc  on c.ID = cc.Capital\n" + 
+				"where c.CountryCode = ?";
+
+		return DoQuery(sql, country);
+	}
+
+	@Override
+	public List<City> getSearchCity(String city) {
+		
+		String sql = "SELECT  c.Name, c.District, c.Population, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital\n" + 
+				"FROM  world.city c left join world.country cc  on c.ID = cc.Capital\n" + 
+				"Where c.Name LIKE ?";
+		return DoQuery(sql, "%"+city+"%");
 	}
 
 }

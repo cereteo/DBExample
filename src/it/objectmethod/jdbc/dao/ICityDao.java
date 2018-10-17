@@ -7,5 +7,7 @@ import it.objectmethod.jdbc.model.City;
 public interface ICityDao {
 	
 	public List<City> getAllCities(String country);
+	
+	public List<City> getSearchCity(String city);
 
 }

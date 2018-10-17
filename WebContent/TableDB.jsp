@@ -9,6 +9,15 @@
 <title>Insert title here</title>
 </head>
 <body>
+<div>
+	<form action="SearchServlet">
+		<input type="search" name="search" placeholder="Ricerca città">
+		<button>Cerca</button>
+		<!-- SELECT  c.Name, c.District, c.Population, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital
+FROM  world.city c left join world.country cc  on c.ID = cc.Capital
+Where c.Name = 'Milano' -->
+	</form>
+</div>
 	<div class="wrapper">
 		<table class="table">
 			<thead>

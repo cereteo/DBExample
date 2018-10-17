@@ -24,7 +24,7 @@ public class ContinentsServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		IContinentsDao continentsDao = new ContinentsDaoImpl();
 		List<Continents> continents = continentsDao.getAllContinents();
-				
+
 		request.setAttribute("continents", continents);
 		request.getRequestDispatcher("TableDB.jsp").forward(request, response);
 	}

@@ -23,9 +23,10 @@ public class CitiesServlet extends HttpServlet{
 
 			String nation = request.getParameter("selectedCountry");
 			ICityDao cityDao = new CityDaoImpl();
-			List<City> cities = (nation == null)? null :cityDao.getAllCities(nation);
-			
+			List<City> cities = cityDao.getAllCities(nation);
+			//(nation == null)? null :
 			request.setAttribute("cities", cities);
-			request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);	
+			request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
+			
 	}
 }

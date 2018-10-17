@@ -34,6 +34,10 @@
 					</c:forEach>
 			</tbody>
 		</table>
+		<form action="CountryServlet">
+			<input type="hidden" name="countryback" value="true">
+			<input type="submit" value="back">
+		</form>
 	</div>
 </body>
 </html>

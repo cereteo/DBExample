@@ -21,6 +21,10 @@
         <servlet-name>CitiesServlet</servlet-name>
         <servlet-class>it.objectmethod.jdbc.servlets.CitiesServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>it.objectmethod.jdbc.servlets.SearchServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContinentServlet</servlet-name>
         <url-pattern>/ContinentServlet</url-pattern>
@@ -32,5 +36,9 @@
     <servlet-mapping>
         <servlet-name>CitiesServlet</servlet-name>
         <url-pattern>/CitiesServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
 </web-app>
