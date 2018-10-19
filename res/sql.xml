@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+	<sql name="getAllCities">
+	<![CDATA[
+		SELECT  c.Name, c.District, c.Population, c.Id
+		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital 
+		FROM  world.city c left join world.country cc  on c.ID = cc.Capital 
+		where c.CountryCode = ?
+	 ]]>
+	</sql>
+	<sql name="getSearchCity">
+	<![CDATA[
+		SELECT  c.Name, c.District, c.Population, c.Id
+		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital
+		FROM  world.city c left join world.country cc  on c.ID = cc.Capital
+		Where c.Name LIKE ?
+	 ]]>
+	</sql>
+</root>

@@ -10,11 +10,19 @@
 </head>
 <body>
 	<div class="wrapper">
+		<div>
+			<form action="OpenFormServlet">
+				<input type="hidden" name="form" value="Add">
+				<input type="submit" value="Aggiungi">
+			</form>
+		</div>
 		<table class="table">
 			<thead>
 				<tr>
 					<th>Nome</th>
 					<th>Popolazione Totale</th>
+					<th>Modifica</th>
+					<th>Cancella</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -24,12 +32,42 @@
 					            <tr style="color: red;">
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
+									<td>
+										<form action="OpenFormServlet">
+											<input type="hidden" name="name" value="${c.name}">
+											<input type="hidden" name="population" value="${c.population}">
+											<input type="hidden" name="id" value="${c.id}">
+											<input type="hidden" name="form" value="Modify">
+											<input type="submit" value="modifica">
+										</form>
+									</td>
+									<td>
+										<form action="DelFormServlet">
+											<input type="hidden" value="${c.id}">
+											<input type="submit" value="rimuovi">
+										</form>
+									</td>
 								</tr>
 					         </c:when>					         
 					         <c:otherwise>
 					            <tr>
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
+									<td>
+										<form action="OpenFormServlet">
+											<input type="hidden" name="name" value="${c.name}">
+											<input type="hidden" name="population" value="${c.population}">
+											<input type="hidden" name="id" value="${c.id}">
+											<input type="hidden" name="form" value="Modify">
+											<input type="submit" value="modifica">
+										</form>
+									</td>
+									<td>
+										<form action="DelFormServlet">
+											<input type="hidden" name="id" value="${c.id}">
+											<input type="submit" value="rimuovi">
+										</form>
+									</td>
 								</tr>
 					         </c:otherwise>
 					      </c:choose>	

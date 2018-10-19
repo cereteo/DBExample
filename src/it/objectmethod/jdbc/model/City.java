@@ -5,6 +5,7 @@ public class City {
 	private String name;
 	private int population;
 	private boolean capital;
+	private int id;
 	
 	public String getName() {
 		return name;
@@ -24,5 +25,10 @@ public class City {
 	public void setCapital(boolean isCapital) {
 		this.capital = isCapital;
 	}
-	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 }

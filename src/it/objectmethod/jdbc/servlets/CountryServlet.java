@@ -25,7 +25,7 @@ public class CountryServlet extends HttpServlet{
 	//	boolean back = Boolean.parseBoolean(request.getParameter("countryback"));
 		
 		ICountryDao countryDao = new CountryDaoImpl();
-		List<Country> country = (continent == null)? null : countryDao.getAllCountry(continent);
+		List<Country> country = (continent == null)? null : countryDao.getAllCountryByContinent(continent);
 		
 		//System.out.println(back);
 		request.setAttribute("country", country);

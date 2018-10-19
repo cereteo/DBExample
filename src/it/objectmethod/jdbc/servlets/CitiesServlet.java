@@ -7,6 +7,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import it.objectmethod.jdbc.dao.ICityDao;
 import it.objectmethod.jdbc.dao.IContinentsDao;
@@ -21,10 +22,11 @@ import it.objectmethod.jdbc.model.Country;
 public class CitiesServlet extends HttpServlet{
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+			HttpSession session = request.getSession();
+
 			String nation = request.getParameter("selectedCountry");
 			ICityDao cityDao = new CityDaoImpl();
 			List<City> cities = cityDao.getAllCities(nation);
-			//(nation == null)? null :
 			request.setAttribute("cities", cities);
 			request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
 			
