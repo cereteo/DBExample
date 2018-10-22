@@ -10,21 +10,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import it.objectmethod.jdbc.dao.ICityDao;
-import it.objectmethod.jdbc.dao.IContinentsDao;
-import it.objectmethod.jdbc.dao.ICountryDao;
 import it.objectmethod.jdbc.dao.impl.CityDaoImpl;
-import it.objectmethod.jdbc.dao.impl.ContinentsDaoImpl;
-import it.objectmethod.jdbc.dao.impl.CountryDaoImpl;
 import it.objectmethod.jdbc.model.City;
-import it.objectmethod.jdbc.model.Continents;
-import it.objectmethod.jdbc.model.Country;
 
 public class CitiesServlet extends HttpServlet{
+
+	private static final long serialVersionUID = 1L;
+
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 			HttpSession session = request.getSession();
-
 			String nation = request.getParameter("selectedCountry");
+			session.setAttribute("selectedCountry", nation);
+			
 			ICityDao cityDao = new CityDaoImpl();
 			List<City> cities = cityDao.getAllCities(nation);
 			request.setAttribute("cities", cities);

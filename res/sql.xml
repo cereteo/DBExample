@@ -6,6 +6,7 @@
 		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital 
 		FROM  world.city c left join world.country cc  on c.ID = cc.Capital 
 		where c.CountryCode = ?
+		ORDER BY c.Population DESC
 	 ]]>
 	</sql>
 	<sql name="getSearchCity">
@@ -14,6 +15,7 @@
 		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital
 		FROM  world.city c left join world.country cc  on c.ID = cc.Capital
 		Where c.Name LIKE ?
+		ORDER BY c.Population DESC
 	 ]]>
 	</sql>
 </root>

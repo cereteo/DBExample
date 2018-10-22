@@ -13,7 +13,14 @@
 		<input type="number" name="population" placeholder="Inserisci la popolazione">
 		<select name="nation">
 			<c:forEach items="${country}" var="c">
-				<option value="${c.countryCode}"> ${c.name}</option>
+				<c:choose>
+					<c:when test="${c.countryCode == selectedCountry}">
+		            	 <option value="${c.countryCode}" selected> ${c.name}</option>
+			         </c:when>         
+			         <c:otherwise>
+			            <option value="${c.countryCode}"> ${c.name}</option>
+			         </c:otherwise>
+				</c:choose>
 			</c:forEach>
 		</select>
 		<input type="submit" name="sub" value="Aggiungi">

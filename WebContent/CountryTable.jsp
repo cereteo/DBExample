@@ -9,6 +9,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<p style="color: #fff;">${selectedContinent}</p>
 	<div class="wrapper">
 		<table class="table">
 			<thead>
@@ -34,8 +35,8 @@
 					</c:forEach>
 			</tbody>
 		</table>
-		<form action="CountryServlet">
-			<input type="hidden" name="countryback" value="true">
+		<form action="ContinentServlet">
+			<input type="hidden" name="back" value="true">
 			<input type="submit" value="back">
 		</form>
 	</div>
