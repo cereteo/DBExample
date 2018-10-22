@@ -9,7 +9,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<p style="color: #fff;">${selectedContinent}</p>
 	<div class="wrapper">
 		<table class="table">
 			<thead>

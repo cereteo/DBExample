@@ -27,8 +27,7 @@ public class CountryServlet extends HttpServlet{
 		if(continent != null) {
 			session.setAttribute("selectedContinent", continent);
 		};
-		
-		System.out.println(continent);
+
 		ICountryDao countryDao = new CountryDaoImpl();
 		List<Country> country = (continent == null)? null : countryDao.getAllCountryByContinent(continent);
 		
