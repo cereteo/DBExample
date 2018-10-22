@@ -115,4 +115,55 @@ public class CountryDaoImpl implements ICountryDao{
 		return ret;
 	};
 
+	public List<Country> MoveCountry(String CodeTo, String CodeFrom) {
+		Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		List<Country> ret = new ArrayList<Country>();
+		try{
+			String sql = "UPDATE\n" + 
+					"world.city c\n" + 
+					"INNER JOIN\n" + 
+					"world.country cc\n" + 
+					"ON\n" + 
+					"c.ID = cc.Capital\n" + 
+					"SET\n" + 
+					"c.CountryCode=?, cc.Capital = null\n" + 
+					"WHERE\n" + 
+					"c.CountryCode=?;";
+			
+			stmt = conn.prepareStatement(sql);
+			
+			stmt.setString(1, CodeTo);
+			stmt.setString(2, CodeFrom);
+			
+			stmt.executeUpdate();
+
+			stmt.close();
+			conn.close();
+			
+		}catch(SQLException se){
+			se.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+				se2.printStackTrace();
+			}
+			try{
+
+				if(conn!=null) {
+					conn.close();
+				}
+
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+		return ret;
+	};
+
 }

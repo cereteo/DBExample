@@ -15,6 +15,10 @@
 				<input type="hidden" name="form" value="Add">
 				<input type="submit" value="Aggiungi">
 			</form>
+			<form action="OpenFormServlet">
+				<input type="hidden" name="form" value="Move">
+				<input type="submit" value="Trasferisci città">
+			</form>
 		</div>
 		<table class="table">
 			<thead>

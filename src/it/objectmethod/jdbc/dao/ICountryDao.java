@@ -8,4 +8,6 @@ public interface ICountryDao {
 	public List<Country> getAllCountryByContinent(String continent);
 	
 	public List<Country> getAllCountry();
+	
+	public List<Country> MoveCountry(String CodeTo, String CodeFrom);
 }

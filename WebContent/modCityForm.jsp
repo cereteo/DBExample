@@ -24,7 +24,7 @@
 			</c:forEach>
 		</select>
 		<input type="hidden" name="id" value="${id}">
-		<input type="submit" name="sub" value="Aggiungi">
+		<input type="submit" name="sub" value="Modifica">
 	</form>
 </body>
 </html>
