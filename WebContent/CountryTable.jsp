@@ -5,6 +5,7 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
@@ -36,7 +37,9 @@
 		</table>
 		<form action="ContinentServlet">
 			<input type="hidden" name="back" value="true">
-			<input type="submit" value="back">
+			<button type="submit" class="button">
+				 <i class="fas fa-long-arrow-alt-left"></i>
+			</button>
 		</form>
 	</div>
 </body>

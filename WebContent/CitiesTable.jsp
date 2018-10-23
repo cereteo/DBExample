@@ -5,19 +5,24 @@
 <html>
 <head>
 <link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 </head>
 <body>
 	<div class="wrapper">
 		<div>
-			<form action="OpenFormServlet">
+			<form action="OpenFormServlet" style="float: left; margin: 0 15px;">
 				<input type="hidden" name="form" value="Add">
-				<input type="submit" value="Aggiungi">
+				<button type="submit" class="button">
+					<i class="fas fa-plus"></i>
+				</button>
 			</form>
 			<form action="OpenFormServlet">
 				<input type="hidden" name="form" value="Move">
-				<input type="submit" value="Trasferisci città">
+				<button type="submit" class="button">
+					<i class="fas fa-exchange-alt"></i>
+				</button>
 			</form>
 		</div>
 		<table class="table">
@@ -42,13 +47,17 @@
 											<input type="hidden" name="population" value="${c.population}">
 											<input type="hidden" name="id" value="${c.id}">
 											<input type="hidden" name="form" value="Modify">
-											<input type="submit" value="modifica">
+											<button type="submit">
+												<i class="fas fa-edit"></i>
+											</button>
 										</form>
 									</td>
 									<td>
 										<form action="DelFormServlet">
 											<input type="hidden" value="${c.id}">
-											<input type="submit" value="rimuovi">
+											<button type="submit">
+												<i class="fas fa-trash-alt"></i>
+											</button>
 										</form>
 									</td>
 								</tr>
@@ -63,13 +72,17 @@
 											<input type="hidden" name="population" value="${c.population}">
 											<input type="hidden" name="id" value="${c.id}">
 											<input type="hidden" name="form" value="Modify">
-											<input type="submit" value="modifica">
+											<button type="submit">
+												<i class="fas fa-edit"></i>
+											</button>
 										</form>
 									</td>
 									<td>
 										<form action="DelFormServlet">
 											<input type="hidden" name="id" value="${c.id}">
-											<input type="submit" value="rimuovi">
+											<button type="submit">
+												<i class="fas fa-trash-alt"></i>
+											</button>
 										</form>
 									</td>
 								</tr>
@@ -80,7 +93,9 @@
 		</table>
 		<form action="CountryServlet">
 			<input type="hidden" name="back" value="true">
-			<input type="submit" value="back">
+			<button type="submit" class="button">
+				 <i class="fas fa-long-arrow-alt-left"></i>
+			</button>
 		</form>
 	</div>
 </body>
