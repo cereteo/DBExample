@@ -138,26 +138,6 @@ public class CountryDaoImpl implements ICountryDao{
 			
 			stmt.executeUpdate();
 			stmt.close();
-			
-			sql = "UPDATE\n" + 
-					"world.city c\n" + 
-					"INNER JOIN\n" + 
-					"world.country cc\n" + 
-					"ON\n" + 
-					"c.ID = cc.Capital\n" + 
-					"SET\n" + 
-					"c.CountryCode=?, cc.Capital = null\n" + 
-					"WHERE\n" + 
-					"c.CountryCode=?;";
-			
-			stmt = conn.prepareStatement(sql);
-			
-			stmt.setString(1, CodeTo);
-			stmt.setString(2, CodeFrom);
-			
-			stmt.executeUpdate();
-
-			stmt.close();
 			conn.close();
 			
 		}catch(SQLException se){
