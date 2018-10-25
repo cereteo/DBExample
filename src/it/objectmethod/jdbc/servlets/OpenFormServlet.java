@@ -23,14 +23,15 @@ public class OpenFormServlet extends HttpServlet{
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		int id = Integer.parseInt(request.getParameter("id"));
 		System.out.println(id);
+		City city = new City();
 		if(id > 0) {
-			
 			ICityDao cityDao = new CityDaoImpl();
-			City city = cityDao.getCityById(id);			
-			request.setAttribute("city", city);	
+			city = cityDao.getCityById(id);			
 		}		
 		ICountryDao countryDao = new CountryDaoImpl();
 		List<Country> country = countryDao.getAllCountry();
+		
+		request.setAttribute("city", city);	
 		request.setAttribute("country", country);
 		request.getRequestDispatcher("cityForm.jsp").forward(request, response);
 	}

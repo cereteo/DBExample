@@ -13,12 +13,12 @@ public interface ICityDao {
 	
 	public List<City> getSearchCity(String city);
 	
-	public boolean addCity(String cityName, int population, String Nation);
+	public int addCity(City city);
 	
-	public boolean modCity(String cityName, int population, String Nation, int id);
+	public int modCity(City city);
 	
 	public void movCities(String countryTo, int[] citiesCode);
 	
-	public boolean delCity(int id);
+	public int delCity(int id);
 
 }

@@ -1,11 +1,12 @@
 package it.objectmethod.jdbc.model;
 
 public class City {
-	
+
+	private int id;
 	private String name;
 	private int population;
 	private boolean capital;
-	private int id;
+	private String countryCode;
 	
 	public String getName() {
 		return name;
@@ -30,5 +31,11 @@ public class City {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+	public String getCountryCode() {
+		return countryCode;
+	}
+	public void setCountryCode(String countryCode) {
+		this.countryCode = countryCode;
 	}
 }

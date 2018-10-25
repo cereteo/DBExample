@@ -19,8 +19,8 @@ public class DelFormServlet extends HttpServlet{
 		int id = Integer.parseInt(request.getParameter("id"));
 		ICityDao cityDao = new CityDaoImpl();
 		
-		boolean addCity = cityDao.delCity(id); 
-		request.setAttribute("validation", addCity);
+		int success = cityDao.delCity(id); 
+		request.setAttribute("validation", success > 0?"OK":"KO" );
 		request.getRequestDispatcher("CitiesServlet").forward(request, response);
 	}
 }

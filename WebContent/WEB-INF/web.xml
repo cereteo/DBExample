@@ -26,16 +26,8 @@
         <servlet-class>it.objectmethod.jdbc.servlets.SearchServlet</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>AddFormServlet</servlet-name>
-        <servlet-class>it.objectmethod.jdbc.servlets.AddFormServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>OpenFormServlet</servlet-name>
         <servlet-class>it.objectmethod.jdbc.servlets.OpenFormServlet</servlet-class>
-    </servlet>
-     <servlet>
-        <servlet-name>ModFormServlet</servlet-name>
-        <servlet-class>it.objectmethod.jdbc.servlets.ModFormServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>DelFormServlet</servlet-name>
@@ -66,16 +58,8 @@
         <url-pattern>/SearchServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>AddFormServlet</servlet-name>
-        <url-pattern>/AddFormServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
         <servlet-name>OpenFormServlet</servlet-name>
         <url-pattern>/OpenFormServlet</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ModFormServlet</servlet-name>
-        <url-pattern>/ModFormServlet</url-pattern>
     </servlet-mapping>
      <servlet-mapping>
         <servlet-name>DelFormServlet</servlet-name>

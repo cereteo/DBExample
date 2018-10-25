@@ -12,10 +12,10 @@
 <body>
 	<div class="wrapper">
 		<div>
-			<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=-1">
+			<a href="OpenFormServlet?id=-1">
 				<i class="fas fa-plus"></i>
 			</a>
-			<a href="http://localhost:8080/JDBCTutorial/OpenMovFormServlet?nation=${nation}">
+			<a href="OpenMovFormServlet?nation=${nation}">
 				<i class="fas fa-exchange-alt"></i>
 			</a>
 		</div>
@@ -36,12 +36,12 @@
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
 									<td>
-										<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=${c.id}">
+										<a href="OpenFormServlet?id=${c.id}">
 											<i class="fas fa-edit"></i>
 										</a>
 									</td>
 									<td>
-										<a href="http://localhost:8080/JDBCTutorial/DelFormServlet?id=${c.id}">
+										<a href="DelFormServlet?id=${c.id}">
 											<i class="fas fa-trash-alt"></i>
 										</a>
 									</td>
@@ -52,12 +52,12 @@
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
 									<td>
-										<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=${c.id}">
+										<a href="OpenFormServlet?id=${c.id}">
 											<i class="fas fa-edit"></i>
 										</a>
 									</td>
 									<td>
-										<a href="http://localhost:8080/JDBCTutorial/DelFormServlet?id=${c.id}">
+										<a href="DelFormServlet?id=${c.id}">
 											<i class="fas fa-trash-alt"></i>
 										</a>
 									</td>

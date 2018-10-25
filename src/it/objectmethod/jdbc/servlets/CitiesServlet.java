@@ -21,6 +21,9 @@ public class CitiesServlet extends HttpServlet{
 
 			HttpSession session = request.getSession();
 			String nation = request.getParameter("selectedCountry");
+			if(nation == null) {
+				nation = (String) session.getAttribute("selectedCountry");
+			}
 			session.setAttribute("selectedCountry", nation);
 			
 			ICityDao cityDao = new CityDaoImpl();

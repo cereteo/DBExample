@@ -8,14 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-		<c:choose>
-			<c:when test="${city.id == null}">
-				<form action="AddFormServlet">
-			</c:when>
-			<c:otherwise>
-				<form action="ModFormServlet">
-			</c:otherwise>
-		</c:choose>
+		<form action="SaveCityServlet">
 		<input type="text" name="city" placeholder="Inserisci la città" value="${city.name}">
 		<input type="number" name="population" placeholder="Inserisci la popolazione" value="${city.population}">
 		<input type="hidden" name="id" value="${city.id}">
@@ -31,7 +24,15 @@
 				</c:choose>
 			</c:forEach>
 		</select>
-		<input type="submit" name="sub" value="Aggiungi">
+				<c:choose>
+			<c:when test="${city.id == 0}">
+				<input type="submit" name="sub" value="Aggiungi">
+			</c:when>
+			<c:otherwise>
+				<input type="submit" name="sub" value="Modifica">
+			</c:otherwise>
+		</c:choose>
+		
 	</form>
 </body>
 </html>

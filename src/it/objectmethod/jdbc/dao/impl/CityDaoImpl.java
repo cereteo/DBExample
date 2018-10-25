@@ -71,8 +71,8 @@ public class CityDaoImpl implements ICityDao{
 
 		return doQueryWithStringParameter(sql, country);
 	}
-	
-	
+
+
 	/*String sql = "SELECT  c.Name, c.District, c.Population, c.Id\n" + 
 					"		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital \n" + 
 					"		FROM  world.city c left join world.country cc  on c.ID = cc.Capital \n" + 
@@ -80,9 +80,9 @@ public class CityDaoImpl implements ICityDao{
 			stmt = conn.prepareStatement(sql);
 
 			stmt.setInt(1, id);
-			
+
 			rs = stmt.execute();*/
-	
+
 	public City getCityById(int id) {
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
@@ -131,32 +131,29 @@ public class CityDaoImpl implements ICityDao{
 
 		return c;
 	};
-	
+
 	@Override
 	public List<City> getSearchCity(String city) {
 
 		String sql = SQLFinder.getSql("getSearchCity");
 		return doQueryWithStringParameter(sql, "%"+city+"%");
 	}
-	
-	public boolean addCity(String cityName, int population, String Nation){
-		
+
+	public int addCity(City city){
+
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
-		boolean rs = false;
+		int ret = 0;
 		try{
-			
-			String sql = "INSERT INTO city (Name, Population, CountryCode) VALUES (?, ?, (SELECT  Code FROM  world.country c  WHERE c.Code = ?));";
+
+			String sql = "INSERT INTO city (Name, Population, CountryCode) VALUES (?, ?, ?);";
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setString(1, cityName);
-			stmt.setInt(2, population);
-			stmt.setString(3, Nation);
-			
-			System.out.println(sql+"  "+Nation);
-			rs = stmt.execute();
-			
-			System.out.println(rs);
+			stmt.setString(1, city.getName());
+			stmt.setInt(2, city.getPopulation());
+			stmt.setString(3, city.getCountryCode());
+			ret = stmt.executeUpdate();
+
 			stmt.close();
 			conn.close();
 
@@ -182,28 +179,26 @@ public class CityDaoImpl implements ICityDao{
 			}
 		}
 
-		return rs;
+		return ret;
 	}
 
-	public boolean modCity(String cityName, int population, String Nation, int id){
-		
+	public int modCity(City city){
+
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
-		boolean rs = false;
+		int ret = 0;
 		try{
-			
+
 			String sql = "UPDATE world.city SET name= ? , population = ?, CountryCode = ? WHERE ID = ?;";
 			stmt = conn.prepareStatement(sql);
 
-			stmt.setString(1, cityName);
-			stmt.setInt(2, population);
-			stmt.setString(3, Nation);
-			stmt.setInt(4, id);
-			
-			System.out.println(sql+"  "+id);
-			rs = stmt.execute();
-			
-			System.out.println(rs);
+			stmt.setString(1, city.getName());
+			stmt.setInt(2, city.getPopulation());
+			stmt.setString(3, city.getCountryCode());
+			stmt.setInt(4, city.getId());
+
+			ret = stmt.executeUpdate();
+
 			stmt.close();
 			conn.close();
 
@@ -229,7 +224,7 @@ public class CityDaoImpl implements ICityDao{
 			}
 		}
 
-		return rs;
+		return ret;
 	}
 
 	public boolean movCity(String countryTo, int citiesCode) {
@@ -237,7 +232,7 @@ public class CityDaoImpl implements ICityDao{
 		PreparedStatement stmt = null;
 		boolean rs = false;
 		try{
-			
+
 			String sql = "UPDATE world.city c LEFT JOIN world.country cc ON c.ID = cc.Capital\n" + 
 					"SET c.CountryCode=? , cc.Capital = null\n" + 
 					"where c.Id = ?;";
@@ -245,9 +240,9 @@ public class CityDaoImpl implements ICityDao{
 
 			stmt.setString(1, countryTo);
 			stmt.setInt(2, citiesCode);
-			
+
 			rs = stmt.execute();
-			
+
 			System.out.println(rs);
 			stmt.close();
 			conn.close();
@@ -276,29 +271,28 @@ public class CityDaoImpl implements ICityDao{
 
 		return rs;
 	}
-	
+
 	public void movCities(String countryTo, int[] citiesCode) {
 		for(int i=0; i<citiesCode.length; i++) {
 			movCity(countryTo, citiesCode[i]);
 		}
 	}
-	
-public boolean delCity(int id){
-		
+
+	public int delCity(int id){
+
 		Connection conn = ConnectionFactory.getConnection();
 		PreparedStatement stmt = null;
-		boolean rs = false;
+		int ret = 0;
 		try{
-			
+
 			String sql = "DELETE FROM world.city WHERE ID = ?;";
 			stmt = conn.prepareStatement(sql);
 
 			stmt.setInt(1, id);
-			
+
 			System.out.println(sql+"  "+id);
-			rs = stmt.execute();
-			
-			System.out.println(rs);
+			ret = stmt.executeUpdate();
+
 			stmt.close();
 			conn.close();
 
@@ -324,7 +318,7 @@ public boolean delCity(int id){
 			}
 		}
 
-		return rs;
+		return ret;
 	}
 
 }
