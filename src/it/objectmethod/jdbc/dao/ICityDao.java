@@ -17,6 +17,8 @@ public interface ICityDao {
 	
 	public boolean modCity(String cityName, int population, String Nation, int id);
 	
+	public void movCities(String countryTo, int[] citiesCode);
+	
 	public boolean delCity(int id);
 
 }

@@ -15,7 +15,7 @@
 			<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=-1">
 				<i class="fas fa-plus"></i>
 			</a>
-			<a href="http://localhost:8080/JDBCTutorial/OpenMovFormServlet">
+			<a href="http://localhost:8080/JDBCTutorial/OpenMovFormServlet?nation=${nation}">
 				<i class="fas fa-exchange-alt"></i>
 			</a>
 		</div>

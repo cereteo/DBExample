@@ -97,7 +97,6 @@ public class CityDaoImpl implements ICityDao{
 			ResultSet rs = stmt.executeQuery();
 
 			while(rs.next()){
-				System.out.print("dio");
 				c.setName(rs.getString("Name"));
 				c.setPopulation(rs.getInt("Population"));
 				c.setCapital(rs.getBoolean("isCapital"));
@@ -233,6 +232,57 @@ public class CityDaoImpl implements ICityDao{
 		return rs;
 	}
 
+	public boolean movCity(String countryTo, int citiesCode) {
+		Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		boolean rs = false;
+		try{
+			
+			String sql = "UPDATE world.city c LEFT JOIN world.country cc ON c.ID = cc.Capital\n" + 
+					"SET c.CountryCode=? , cc.Capital = null\n" + 
+					"where c.Id = ?;";
+			stmt = conn.prepareStatement(sql);
+
+			stmt.setString(1, countryTo);
+			stmt.setInt(2, citiesCode);
+			
+			rs = stmt.execute();
+			
+			System.out.println(rs);
+			stmt.close();
+			conn.close();
+
+		}catch(SQLException se){
+			se.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+				se2.printStackTrace();
+			}
+			try{
+
+				if(conn!=null) {
+					conn.close();
+				}
+
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+		return rs;
+	}
+	
+	public void movCities(String countryTo, int[] citiesCode) {
+		for(int i=0; i<citiesCode.length; i++) {
+			movCity(countryTo, citiesCode[i]);
+		}
+	}
+	
 public boolean delCity(int id){
 		
 		Connection conn = ConnectionFactory.getConnection();

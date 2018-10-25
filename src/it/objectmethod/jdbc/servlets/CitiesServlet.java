@@ -25,6 +25,7 @@ public class CitiesServlet extends HttpServlet{
 			
 			ICityDao cityDao = new CityDaoImpl();
 			List<City> cities = cityDao.getAllCities(nation);
+			request.setAttribute("nation", nation);
 			request.setAttribute("cities", cities);
 			request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
 			

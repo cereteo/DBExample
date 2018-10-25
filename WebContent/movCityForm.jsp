@@ -9,14 +9,12 @@
 </head>
 <body>
 	<form action="MovFormServlet">
-		<select name="nationFrom">
-			<c:forEach items="${country}" var="c">
-				<option value="${c.countryCode}"> ${c.name}</option>
+			<c:forEach items="${city}" var="c">
+				<span>${c.name}</span><input type="checkbox" name ="city" value=" ${c.id}"><br>
 			</c:forEach>
-		</select>
 		<select name="nationTo">
-			<c:forEach items="${country}" var="c">
-				<option value="${c.countryCode}"> ${c.name}</option>
+			<c:forEach items="${nation}" var="c">
+				<option value="${c.countryCode}">${c.name}</option>
 			</c:forEach>
 		</select>
 		<input type="submit" name="sub" value="Trasferisci">

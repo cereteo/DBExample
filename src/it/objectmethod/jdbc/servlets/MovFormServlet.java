@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.swing.Icon;
 
 import it.objectmethod.jdbc.dao.ICityDao;
 import it.objectmethod.jdbc.dao.ICountryDao;
@@ -18,11 +19,17 @@ public class MovFormServlet extends HttpServlet{
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String codeFrom = request.getParameter("nationFrom");
+		String[] cities = request.getParameterValues("city");
+		int[] citiesCode = new int[cities.length];
+		
+		for(int i=0; i<cities.length; i++) {
+			citiesCode[i] = Integer.parseInt(cities[i].replaceAll("\\s+",""));
+		}
+		
 		String codeTo = request.getParameter("nationTo");
 		
-		ICountryDao countryDao = new CountryDaoImpl();
-		countryDao.MoveCountry(codeTo, codeFrom);
+		ICityDao cityDao = new CityDaoImpl();
+		cityDao.movCities(codeTo, citiesCode);
 		request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
 	}
 }
