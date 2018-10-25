@@ -8,9 +8,17 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="AddFormServlet">
-		<input type="text" name="city" placeholder="Inserisci la città">
-		<input type="number" name="population" placeholder="Inserisci la popolazione">
+		<c:choose>
+			<c:when test="${city.id == null}">
+				<form action="AddFormServlet">
+			</c:when>
+			<c:otherwise>
+				<form action="ModFormServlet">
+			</c:otherwise>
+		</c:choose>
+		<input type="text" name="city" placeholder="Inserisci la città" value="${city.name}">
+		<input type="number" name="population" placeholder="Inserisci la popolazione" value="${city.population}">
+		<input type="hidden" name="id" value="${city.id}">
 		<select name="nation">
 			<c:forEach items="${country}" var="c">
 				<c:choose>

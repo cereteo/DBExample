@@ -23,8 +23,7 @@ public class ModFormServlet extends HttpServlet{
 		int population = Integer.parseInt(request.getParameter("population"));
 		String nation = request.getParameter("nation");
 		int id = Integer.parseInt(request.getParameter("id"));
-		
-		System.out.println(city);
+
 		ICityDao cityDao = new CityDaoImpl();
 		boolean addCity = cityDao.modCity(city, population, nation, id);
 

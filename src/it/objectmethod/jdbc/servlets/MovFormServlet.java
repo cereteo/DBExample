@@ -23,7 +23,6 @@ public class MovFormServlet extends HttpServlet{
 		
 		ICountryDao countryDao = new CountryDaoImpl();
 		countryDao.MoveCountry(codeTo, codeFrom);
-		//(nation == null)? null :
 		request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
 	}
 }

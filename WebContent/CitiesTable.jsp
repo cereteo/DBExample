@@ -12,18 +12,12 @@
 <body>
 	<div class="wrapper">
 		<div>
-			<form action="OpenFormServlet" style="float: left; margin: 0 15px;">
-				<input type="hidden" name="form" value="Add">
-				<button type="submit" class="button">
-					<i class="fas fa-plus"></i>
-				</button>
-			</form>
-			<form action="OpenFormServlet">
-				<input type="hidden" name="form" value="Move">
-				<button type="submit" class="button">
-					<i class="fas fa-exchange-alt"></i>
-				</button>
-			</form>
+			<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=-1">
+				<i class="fas fa-plus"></i>
+			</a>
+			<a href="http://localhost:8080/JDBCTutorial/OpenMovFormServlet">
+				<i class="fas fa-exchange-alt"></i>
+			</a>
 		</div>
 		<table class="table">
 			<thead>
@@ -42,23 +36,14 @@
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
 									<td>
-										<form action="OpenFormServlet">
-											<input type="hidden" name="name" value="${c.name}">
-											<input type="hidden" name="population" value="${c.population}">
-											<input type="hidden" name="id" value="${c.id}">
-											<input type="hidden" name="form" value="Modify">
-											<button type="submit">
-												<i class="fas fa-edit"></i>
-											</button>
-										</form>
+										<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=${c.id}">
+											<i class="fas fa-edit"></i>
+										</a>
 									</td>
 									<td>
-										<form action="DelFormServlet">
-											<input type="hidden" value="${c.id}">
-											<button type="submit">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</form>
+										<a href="http://localhost:8080/JDBCTutorial/DelFormServlet?id=${c.id}">
+											<i class="fas fa-trash-alt"></i>
+										</a>
 									</td>
 								</tr>
 					         </c:when>					         
@@ -67,23 +52,14 @@
 									<td>${c.name}</td>			
 									<td>${c.population}</td>
 									<td>
-										<form action="OpenFormServlet">
-											<input type="hidden" name="name" value="${c.name}">
-											<input type="hidden" name="population" value="${c.population}">
-											<input type="hidden" name="id" value="${c.id}">
-											<input type="hidden" name="form" value="Modify">
-											<button type="submit">
-												<i class="fas fa-edit"></i>
-											</button>
-										</form>
+										<a href="http://localhost:8080/JDBCTutorial/OpenFormServlet?id=${c.id}">
+											<i class="fas fa-edit"></i>
+										</a>
 									</td>
 									<td>
-										<form action="DelFormServlet">
-											<input type="hidden" name="id" value="${c.id}">
-											<button type="submit">
-												<i class="fas fa-trash-alt"></i>
-											</button>
-										</form>
+										<a href="http://localhost:8080/JDBCTutorial/DelFormServlet?id=${c.id}">
+											<i class="fas fa-trash-alt"></i>
+										</a>
 									</td>
 								</tr>
 					         </c:otherwise>

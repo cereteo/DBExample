@@ -71,6 +71,68 @@ public class CityDaoImpl implements ICityDao{
 
 		return doQueryWithStringParameter(sql, country);
 	}
+	
+	
+	/*String sql = "SELECT  c.Name, c.District, c.Population, c.Id\n" + 
+					"		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital \n" + 
+					"		FROM  world.city c left join world.country cc  on c.ID = cc.Capital \n" + 
+					"		where c.Id = ?";
+			stmt = conn.prepareStatement(sql);
+
+			stmt.setInt(1, id);
+			
+			rs = stmt.execute();*/
+	
+	public City getCityById(int id) {
+		Connection conn = ConnectionFactory.getConnection();
+		PreparedStatement stmt = null;
+		City c = new City();
+		try{
+			stmt = conn.prepareStatement("SELECT  c.Name, c.District, c.Population, c.Id\n" + 
+					"		, CASE WHEN cc.Capital is not null THEN 1 ELSE 0 END isCapital \n" + 
+					"		FROM  world.city c left join world.country cc  on c.ID = cc.Capital \n" + 
+					"		where c.Id = ?");
+
+			stmt.setInt(1, id);
+			ResultSet rs = stmt.executeQuery();
+
+			while(rs.next()){
+				System.out.print("dio");
+				c.setName(rs.getString("Name"));
+				c.setPopulation(rs.getInt("Population"));
+				c.setCapital(rs.getBoolean("isCapital"));
+				c.setId(rs.getInt("Id"));
+			}
+
+			rs.close();
+			stmt.close();
+			conn.close();
+
+		}catch(SQLException se){
+			se.printStackTrace();
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			try{
+				if(stmt!=null)
+					stmt.close();
+			}catch(SQLException se2){
+				se2.printStackTrace();
+			}
+			try{
+
+				if(conn!=null) {
+					conn.close();
+				}
+
+			}catch(SQLException se){
+				se.printStackTrace();
+			}
+		}
+
+		return c;
+	};
+	
 	@Override
 	public List<City> getSearchCity(String city) {
 

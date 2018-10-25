@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import it.objectmethod.jdbc.dao.ICityDao;
+import it.objectmethod.jdbc.dao.ICountryDao;
 import it.objectmethod.jdbc.dao.impl.CityDaoImpl;
-import it.objectmethod.jdbc.model.City;
+import it.objectmethod.jdbc.dao.impl.CountryDaoImpl;
+import it.objectmethod.jdbc.model.Country;
 
-public class SearchServlet extends HttpServlet{
+public class OpenMovFormServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String city = request.getParameter("search");
-		ICityDao cityDao = new CityDaoImpl();
-		List<City> cities = cityDao.getSearchCity(city);
-
-		request.setAttribute("cities", cities);
-		request.getRequestDispatcher("CitiesTable.jsp").forward(request, response);
+		
+		ICountryDao countryDao = new CountryDaoImpl();
+		List<Country> country = countryDao.getAllCountry();
+		request.setAttribute("country", country);
+		request.getRequestDispatcher("movCityForm.jsp").forward(request, response);
 	}
 }

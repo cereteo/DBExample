@@ -24,7 +24,6 @@ public class AddFormServlet extends HttpServlet{
 		String city = request.getParameter("city");
 		int population = Integer.parseInt(request.getParameter("population"));
 		String nation = request.getParameter("nation");
-		System.out.println(city);
 		
 		ICityDao cityDao = new CityDaoImpl();
 		boolean addCity = cityDao.addCity(city, population, nation);

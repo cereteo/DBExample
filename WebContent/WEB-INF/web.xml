@@ -45,6 +45,10 @@
         <servlet-name>MovFormServlet</servlet-name>
         <servlet-class>it.objectmethod.jdbc.servlets.MovFormServlet</servlet-class>
     </servlet>
+     <servlet>
+        <servlet-name>OpenMovFormServlet</servlet-name>
+        <servlet-class>it.objectmethod.jdbc.servlets.OpenMovFormServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>ContinentServlet</servlet-name>
         <url-pattern>/ContinentServlet</url-pattern>
@@ -80,5 +84,9 @@
     <servlet-mapping>
         <servlet-name>MovFormServlet</servlet-name>
         <url-pattern>/MovFormServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>OpenMovFormServlet</servlet-name>
+        <url-pattern>/OpenMovFormServlet</url-pattern>
     </servlet-mapping>
 </web-app>
